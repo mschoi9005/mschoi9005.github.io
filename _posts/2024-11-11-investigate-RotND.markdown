@@ -6,6 +6,7 @@ categories: IT
 |![discord_rating_window1](/../images/2024-11-11-investigate-RotND/discord_rating_window1.png)
 |![discord_rating_window2](/../images/2024-11-11-investigate-RotND/discord_rating_window2.png)
 |![discord_rating_window3](/../images/2024-11-11-investigate-RotND/discord_rating_window3.png)
+|BYG Discord Server chat
 
 - - -
 <br>
