@@ -14,7 +14,9 @@ In order to derive the best build for a track, you must determine the hit window
 
 [For those who only want to get the results](#it-means)
 
-## 2. inspect data
+<br>
+
+## 2. Inspect Data
 
 Then where do the data reside? Because *Rift of the NecroDancer Demo(RotND)* is a steam game, general path for game data is `C:\Program Files (x86)\Steam\steamapps\common\Rift of the NecroDancer Demo` (Windows 11). (By further search in file explorer, I also found that save, logs, etc. are in `C:\Users\[USER_NAME]\AppData\LocalLow\Brace Yourself Games\Rift of the NecroDancer Demo`.)<br>
 With a first glance, you can easily see that the game is executed on Unity engine.
@@ -24,13 +26,15 @@ With a first glance, you can easily see that the game is executed on Unity engin
 
 At first, because I've never developed with unity, I had no idea about the general unity game structure. So I asked to ChatGPT immediately😂, and its order was to look at **`RiftOfTheNecrodancer_Data`** folder.
 
-|<img src="/../images/20241112/gpt_q1.png" alt="gpt_q1" width="650" align="right">
+|<img src="/../images/20241112/gpt_q1.png" alt="gpt_q1" align="right" width="60%">
 |gpt question
 
-|<img src="/../images/20241112/gpt_a1-1.png" alt="gpt_a1-1" width="600">
-|<img src="/../images/20241112/gpt_a1-2.png" alt="gpt_a1-2" width="600">
-|<img src="/../images/20241112/gpt_a1-3.png" alt="gpt_a1-3" width="600">
+|<img src="/../images/20241112/gpt_a1-1.png" alt="gpt_a1-1" width="60%">
+|<img src="/../images/20241112/gpt_a1-2.png" alt="gpt_a1-2" width="60%">
+|<img src="/../images/20241112/gpt_a1-3.png" alt="gpt_a1-3" width="60%">
 |gpt answers
+
+<br>
 
 ### 2-1. data.unity3d
 
@@ -48,6 +52,8 @@ The file starts with "UnityFS" and there is a version in the same line. Go to `O
 Then load `data.unity3d`. You can view some data of assets in 'Asset List' section.<br>
 The most valuable data was beatmap json files. They may be used to program "build suggestion system" later.<br>
 However, there was no useful data from 'MonoBehaviour' assets for my purpose and they seemed insufficient to cover all data constituting the game. I had to find another source.
+
+<br>
 
 ### 2-2. Assembly_CSharp.dll
 
@@ -74,6 +80,8 @@ In conclusion, the process of deriving input rating is as follows:
 
 So the higher rating percentage is, the better rating you would get.
 
+<br>
+
 ### 2-3. bundles
 
 Our next task is clear; Find the appropriate file for `InputRatingsDefinition`.
@@ -97,8 +105,8 @@ Looking at the assets is quite fun. You can find game constituents such as VFX i
 
 Second or fourth one would be our interest. But the fourth one has its property `_perfectBonusScore` with value `0`, not `1`. Thus, data in the second json file could eventually give us the answer.
 
-|<img src="/../images/20241112/input_ratings_def_2-1.png" alt="input_ratings_def_2-1" width="600">|<img src="/../images/20241112/input_ratings_def_4-1.png" alt="input_ratings_def_4-1">
-|<img src="/../images/20241112/input_ratings_def_2-2.png" alt="input_ratings_def_2-2">|<img src="/../images/20241112/input_ratings_def_4-2.png" alt="input_ratings_def_4-2">
+|<img src="/../images/20241112/input_ratings_def_2-1.png" alt="input_ratings_def_2-1" width="90%">|<img src="/../images/20241112/input_ratings_def_4-1.png" alt="input_ratings_def_4-1" width="90%">
+|<img src="/../images/20241112/input_ratings_def_2-2.png" alt="input_ratings_def_2-2" width="90%">|<img src="/../images/20241112/input_ratings_def_4-2.png" alt="input_ratings_def_4-2" width="90%">
 |`RhythmRift_InputRatingsDefinition.json`, second one|`Default_InputRatingsDefinition.json`, fourth one
 
 I'd like to explain the json file(`RhythmRift_InputRatingsDefinition.json`) in detail.<br>
@@ -119,7 +127,9 @@ else(**±175ms**) **'Ok'**/111
 (values subject to change after game release;<br>
 I'm not gonna modify this consistently)
 
-## 3. conclusion
+<br>
+
+## 3. Conclusion
 
 So, our honor Marukyu was lying. Actually, that ±37.5ms is come from another json file(`Default_InputRatingsDefinition.json`), and I think BYG team may have more experimental InputRatingsDefinition json files than us.
 
